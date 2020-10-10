@@ -17,18 +17,19 @@ module.exports = function(app) {
       res.json(result)
   });
   })
-}
+
   // Add sequelize code to get a specific book and return it as JSON
-  app.get("/api/", function(req, res) {
-    cogsModel.findAll({
+  app.get("/api/users/:id", function(req, res) {
+    cogsModel.User.findAll({
       where: {
-        title: req.params.book,
+        id: req.params.id,
       },
     }).then((result) => {
       res.json(result)
     } )
   });
 
+}
 //   // Add sequelize code to get all books of a specific genre and return them as JSON
 //   app.get("/api/genre/:genre", function(req, res) {
 //     Book.findAll({
