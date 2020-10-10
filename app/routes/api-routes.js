@@ -10,6 +10,12 @@ const cogsModel = require("../models/cogsModel.js");
 // Routes
 // =============================================================
 module.exports = function(app) {
+  // users api get route
+  app.get("/api/all", function(req, res) {
+    cogsModel.User.findAll(req.body).then((result) =>  {
+      res.json(result)
+  });
+  })
 
   // users api get route
   app.get("/api/users", function(req, res) {
@@ -18,9 +24,43 @@ module.exports = function(app) {
   });
   })
 
-  // Add sequelize code to get a specific book and return it as JSON
+  // specific user API route
   app.get("/api/users/:id", function(req, res) {
     cogsModel.User.findAll({
+      where: {
+        id: req.params.id,
+      },
+    }).then((result) => {
+      res.json(result)
+    } )
+  });
+ 
+  // inventory_items api get route
+  app.get("/api/inventory_items", function(req, res) {
+    cogsModel.Inventory_items.findAll(req.body).then((result) =>  {
+      res.json(result)
+  });
+  })
+  // specific inventory_items API routes
+  app.get("/api/inventory_items/:id", function(req, res) {
+    cogsModel.Inventory_items.findAll({
+      where: {
+        id: req.params.id,
+      },
+    }).then((result) => {
+      res.json(result)
+    } )
+  });
+
+  // weekly_inventory_items api get route
+  app.get("/api/weekly_inventory_table", function(req, res) {
+    cogsModel.Weekly_inventory_table.findAll(req.body).then((result) =>  {
+      res.json(result)
+  });
+  })
+  // specific inventory_items API routes
+  app.get("/api/weekly_inventory_table/:id", function(req, res) {
+    cogsModel.Weekly_inventory_table.findAll({
       where: {
         id: req.params.id,
       },
