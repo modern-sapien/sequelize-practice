@@ -22,78 +22,202 @@ const User = sequelize.define("User",  {
     inventory_table_id: {
         type: Sequelize.INTEGER,
         allowNull: true},
-    define: {
+    },{
         freezeTableName: true,        // keeps from becoming pluralized 
-        timestamps: false,            // CAN REMOVE once not using seed data              
-    }
+        timestamps: false,            // CAN REMOVE once not using seed data
+    });
     // USER id should be auto-incrementing & primary key
-});
+
 User.sync();
 
-// USERS TABLe
+// USERS TABLE
 const Users_table = sequelize.define("users_table",  {
-    username: Sequelize.STRING,
-    password: Sequelize.STRING,
-    email: Sequelize.STRING,
-    inventory_table_id: Sequelize.INTEGER,
-    users_id: Sequelize.INTEGER,
-    newUser_id: Sequelize.INTEGER
+    username: {
+        type: Sequelize.STRING,
+        allowNull: true},
+    password: {
+        type: Sequelize.STRING,
+        allowNull: true},
+    email: {
+        type: Sequelize.STRING,
+        allowNull: true},
+    inventory_table_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true},
+    user_id: {
+            type: Sequelize.INTEGER,
+            allowNull: true},
+},{
+    freezeTableName: true,        // keeps from becoming pluralized 
+    timestamps: false,            // CAN REMOVE once not using seed data
 });
 Users_table.sync();
 
 // INITIAL INVENTORY CREATION
 const Inventory_table = sequelize.define("inventory_table",  {
-    unit_name: Sequelize.STRING,
-    unit_category: Sequelize.STRING,
-    unit_price: Sequelize.STRING,
-    unit_distributor: Sequelize.INTEGER,
-    item_count: Sequelize.INTEGER,
-    item_count_type: Sequelize.STRING,
-    item_price: Sequelize.INTEGER,
-    item_count_par: Sequelize.INTEGER,
-    unit_count: Sequelize.INTEGER,
-    current_item_count: Sequelize.INTEGER,
-    item_in_use_count: Sequelize.INTEGER,
-    inventory_total_value: Sequelize.INTEGER,
-    projected_order_cost: Sequelize.INTEGER,
-    user_id: Sequelize.INTEGER,
+    unit_name:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }, 
+    unit_category:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }, 
+    unit_price:{
+        type: Sequelize.INTEGER,   // change to decimal?
+        allowNull: false
+    }, 
+    unit_distributor:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }, 
+    item_count:{
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    item_count_type:{               // possibly replace with measurement?
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    item_price:{
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    item_count_par:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    unit_count:{
+        type: Sequelize.STRING,
+        allowNull: true
+    }, 
+    unit_count_par:{
+        type: Sequelize.STRING,
+        allowNull: true
+    }, 
+    current_item_count:{
+        type: Sequelize.STRING,
+        allowNull: true
+    }, 
+    item_in_use_count:{
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    inventory_total_value: { 
+        type: Sequelize.INTEGER,
+        allowNull: true
+    }, 
+    projected_order_cost: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true},
     // INVENTORY TABLE id should be auto-incrementing, but only used as a reference, should not necessarily be more than one reference table for MVP
+},{
+    freezeTableName: true,        // keeps from becoming pluralized 
+    timestamps: false,            // CAN REMOVE once not using seed data
 });
 Inventory_table.sync();
 
 // WEEKLY INVENTORY INPUT
 const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
-    unit_name: Sequelize.STRING,
-    unit_category: Sequelize.STRING,
-    unit_price: Sequelize.STRING,
-    unit_distributor: Sequelize.INTEGER,
-    item_count: Sequelize.INTEGER,
-    item_count_type: Sequelize.STRING,
-    item_price: Sequelize.INTEGER,
-    item_count_par: Sequelize.INTEGER,
-    unit_count: Sequelize.INTEGER,
-    current_item_count: Sequelize.INTEGER,
-    item_in_use_count: Sequelize.INTEGER,
-    inventory_total_value: Sequelize.INTEGER,
-    projected_order_cost: Sequelize.INTEGER,
-    user_id: Sequelize.INTEGER,     // USER ID
-    cogs_weekly_table: Sequelize.INTEGER   // COGS TABLE
-     // WEEKLY INVENTORY TABLE id should be auto-incrementing
-});
+    unit_name:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }, 
+    unit_category:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }, 
+    unit_price:{
+        type: Sequelize.INTEGER,   // change to decimal?
+        allowNull: false
+    }, 
+    unit_distributor:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }, 
+    unit_count:{
+        type: Sequelize.STRING,
+        allowNull: true
+    }, 
+    unit_count_par:{
+        type: Sequelize.STRING,
+        allowNull: true
+    }, 
+    item_count:{
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    item_count_type:{               // possibly replace with measurement type?
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    item_price:{
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    item_count_par:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    current_item_count:{
+        type: Sequelize.STRING,
+        allowNull: true
+    }, 
+    items_in_use_count:{
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    inventory_total_value: { 
+        type: Sequelize.INTEGER,
+        allowNull: true
+    }, 
+    projected_order_cost: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    inventory_date: {
+        type: Sequelize.DATEONLY,
+        allowNull: false                         // will need to adjust this 
+    },
+    user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    cogs_weekly_table_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true},
+    },{
+        freezeTableName: true,        // keeps from becoming pluralized 
+        timestamps: false,            // CAN REMOVE once not using seed data
+    });
 Weekly_inventory_table.sync();
 
 // WEEKLY COGS INPUT
 const Cogs_weekly_table = sequelize.define("cogs_weekly_table",  {
     // SHOULD WE INCLUDE A DATE COLUMN?
-    weekly_cost: Sequelize.INTEGER,
-    weekly_sales: Sequelize.INTEGER,
-    starting_inventory: Sequelize.INTEGER,            // THIS value needs to come from a reference INVENTORY "total value" ID
-    ending_inventory: Sequelize.INTEGER,              // THIS value needs to come from a reference INVENTORY "total value" ID
+    starting_date: Sequelize.DATE,                 // this comes from inventory ID inventory date column, user can change?
+    starting_total_inventory: Sequelize.INTEGER,  // THIS value needs to come from a reference INVENTORY "total value" ID
+    weekly_cost: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    weekly_sales: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    ending_date: Sequelize.DATE,                            // this comes from weekly inventory_date                     
+    ending_total_inventory: Sequelize.INTEGER,              // THIS value needs to come from a reference INVENTORY "total value" ID
     cost_of_goods_weekly: Sequelize.INTEGER,          // TOTAL COST OF GOODS for the week, starting and purchased MINUS ending
     operational_cost_weekly: Sequelize.DECIMAL,       // cost of goods weekly DIVIDED by sales
     user_id: Sequelize.INTEGER,                       // USER ID
-    weekly_inventory_table: Sequelize.INTEGER         // COGS TABLE
     // COGS WEEKLY INVENTORY TABLE id should be auto-incrementing
+},{
+    freezeTableName: true,        // keeps from becoming pluralized 
+    timestamps: false,            // CAN REMOVE once not using seed data
 });
 Cogs_weekly_table.sync();
 
@@ -109,6 +233,9 @@ const Cogs_yearly_table = sequelize.define("cogs_yearly_table",  {
     user_id: Sequelize.INTEGER,                       // USER ID
     weekly_inventory_table: Sequelize.INTEGER         // COGS TABLE
     // COGS WEEKLY INVENTORY TABLE id should be auto-incrementing
+},{
+    freezeTableName: true,        // keeps from becoming pluralized 
+    timestamps: false,            // CAN REMOVE once not using seed data
 });
 Cogs_yearly_table.sync();
 

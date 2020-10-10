@@ -9,23 +9,19 @@ CREATE DATABASE cogs_db;
 
 USE cogs_db;
 
--- CREATE TABLE users
--- (
--- 	id INT AUTO_INCREMENT NOT NULL,
--- 	username varchar(200),
--- 	password varchar(200),
---     email varchar(200),
--- 	inventory_table_id INTEGER,
--- 	PRIMARY KEY (id)
--- );
+-- USER SEEDS
+INSERT INTO user (username, password, email) VALUES ("American Bar", "abacab", "americanbar@gmail.com"), ("Rock N Roll Night Club", "12354", "dominic@hotmail.com"), 
+("Danny's Tires", "bald13s", "Danny@dannytires.com"), ("Wine Store", "envinvoveritas", "wineguyr@winerymail.com");
 
--- CREATE TABLE users_table
--- (
--- 	id INT AUTO_INCREMENT NOT NULL,
--- 	username varchar(200),
--- 	password varchar(200),
---     email varchar(200),
--- 	inventory_table_id INTEGER,
---     users_id INTEGER,
--- 	PRIMARY KEY (id)
--- );
+-- USER TABLE SEEDS
+INSERT INTO users_table (id) VALUES (1), (2), (3), (4);
+
+-- JOINING ALL USERS & USER TABLE at IDs
+SELECT user.username, user.password, user.email, user.id AS id 
+FROM user
+INNER JOIN users_table ON user.id = users_table.id;
+
+-- Displaying a single user's username, password & email
+SELECT user.username, user.password, user.email, user.id AS id
+FROM user
+WHERE user.id = 3
