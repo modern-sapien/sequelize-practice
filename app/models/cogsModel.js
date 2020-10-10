@@ -54,7 +54,7 @@ const Users_table = sequelize.define("users_table",  {
 Users_table.sync();
 
 // INITIAL INVENTORY CREATION
-const Inventory_table = sequelize.define("inventory_table",  {
+const Inventory_items = sequelize.define("inventory_item",  {
     unit_name:{
         type: Sequelize.STRING,
         allowNull: false
@@ -70,9 +70,17 @@ const Inventory_table = sequelize.define("inventory_table",  {
     unit_distributor:{
         type: Sequelize.STRING,
         allowNull: false
-    }, 
-    item_count:{
+    },
+     unit_count:{
         type: Sequelize.INTEGER,
+        allowNull: true
+    }, 
+    unit_count_par:{
+        type: Sequelize.DECIMAL (10,2),
+        allowNull: true
+    },
+    item_count:{
+        type: Sequelize.DECIMAL (10,2),
         allowNull: false
     },
     item_count_type:{               // possibly replace with measurement?
@@ -87,14 +95,6 @@ const Inventory_table = sequelize.define("inventory_table",  {
         type: Sequelize.STRING,
         allowNull: false
     },
-    unit_count:{
-        type: Sequelize.STRING,
-        allowNull: true
-    }, 
-    unit_count_par:{
-        type: Sequelize.STRING,
-        allowNull: true
-    }, 
     current_item_count:{
         type: Sequelize.STRING,
         allowNull: true
@@ -103,23 +103,15 @@ const Inventory_table = sequelize.define("inventory_table",  {
         type: Sequelize.INTEGER,
         allowNull: true
     },
-    inventory_total_value: { 
-        type: Sequelize.INTEGER,
-        allowNull: true
-    }, 
-    projected_order_cost: {
-        type: Sequelize.INTEGER,
-        allowNull: true
-    },
     user_id: {
         type: Sequelize.INTEGER,
         allowNull: true},
     // INVENTORY TABLE id should be auto-incrementing, but only used as a reference, should not necessarily be more than one reference table for MVP
 },{
-    freezeTableName: true,        // keeps from becoming pluralized 
+    freezeTableName: false,        // IS PLURALIZED
     timestamps: false,            // CAN REMOVE once not using seed data
 });
-Inventory_table.sync();
+Inventory_items.sync();
 
 // WEEKLY INVENTORY INPUT
 const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
@@ -138,20 +130,20 @@ const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
     unit_distributor:{
         type: Sequelize.STRING,
         allowNull: false
-    }, 
-    unit_count:{
-        type: Sequelize.STRING,
+    },
+     unit_count:{
+        type: Sequelize.INTEGER,
         allowNull: true
     }, 
     unit_count_par:{
-        type: Sequelize.STRING,
+        type: Sequelize.DECIMAL (10,2),
         allowNull: true
-    }, 
+    },
     item_count:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL (10,2),
         allowNull: false
     },
-    item_count_type:{               // possibly replace with measurement type?
+    item_count_type:{               // possibly replace with measurement?
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -167,11 +159,11 @@ const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
         type: Sequelize.STRING,
         allowNull: true
     }, 
-    items_in_use_count:{
+    item_in_use_count:{
         type: Sequelize.INTEGER,
         allowNull: true
     },
-    inventory_total_value: { 
+    inventory_total_value: {              // THIS IS WHERE inventory_items & weekly inventory changes
         type: Sequelize.INTEGER,
         allowNull: true
     }, 
@@ -181,15 +173,20 @@ const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
     },
     inventory_date: {
         type: Sequelize.DATEONLY,
-        allowNull: false                         // will need to adjust this 
+        allowNull: true                         // user will give date to use
     },
     user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
-    cogs_weekly_table_id: {
+    cogs_weekly_table_id: {                     // foreign key situation? where when a user assigns it to a week, it accepts that ID as a value?
         type: Sequelize.INTEGER,
-        allowNull: true},
+        allowNull: true
+    },
+    // inventory_items_id: {                       // foreign key situation?
+    //     type: Sequelize.INTEGER,
+    //     allowNull: true
+    // },
     },{
         freezeTableName: true,        // keeps from becoming pluralized 
         timestamps: false,            // CAN REMOVE once not using seed data
@@ -240,6 +237,6 @@ const Cogs_yearly_table = sequelize.define("cogs_yearly_table",  {
 Cogs_yearly_table.sync();
 
 
-module.exports = User, Users_table, Inventory_table, Weekly_inventory_table, Cogs_weekly_table, Cogs_yearly_table;
+module.exports = User, Users_table, Inventory_items, Weekly_inventory_table, Cogs_weekly_table, Cogs_yearly_table;
 
 
