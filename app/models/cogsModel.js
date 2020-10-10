@@ -95,14 +95,6 @@ const Inventory_items = sequelize.define("inventory_item",  {
         type: Sequelize.STRING,
         allowNull: false
     },
-    current_item_count:{
-        type: Sequelize.STRING,
-        allowNull: true
-    }, 
-    item_in_use_count:{
-        type: Sequelize.INTEGER,
-        allowNull: true
-    },
     user_id: {
         type: Sequelize.INTEGER,
         allowNull: true},
@@ -232,7 +224,17 @@ const Cogs_yearly_table = sequelize.define("cogs_yearly_table",  {
 });
 Cogs_yearly_table.sync();
 
+const Cogsdb = {
+    User: User,
+    Users_table: Users_table,
+    Inventory_items: Inventory_items,
+    Weekly_inventory_table: Weekly_inventory_table,
+    Cogs_weekly_table: Cogs_weekly_table,
+    Cogs_yearly_table: Cogs_yearly_table
+}
 
-module.exports = User, Users_table, Inventory_items, Weekly_inventory_table, Cogs_weekly_table, Cogs_yearly_table;
+module.exports = Cogsdb
+
+// User, Users_table, Inventory_items, Weekly_inventory_table, Cogs_weekly_table, Cogs_yearly_table];
 
 
