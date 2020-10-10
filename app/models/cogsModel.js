@@ -117,19 +117,19 @@ Inventory_items.sync();
 const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
     unit_name:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     }, 
     unit_category:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     }, 
     unit_price:{
         type: Sequelize.INTEGER,   // change to decimal?
-        allowNull: false
+        allowNull: true
     }, 
     unit_distributor:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
      unit_count:{
         type: Sequelize.INTEGER,
@@ -141,19 +141,19 @@ const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
     },
     item_count:{
         type: Sequelize.DECIMAL (10,2),
-        allowNull: false
+        allowNull: true
     },
     item_count_type:{               // possibly replace with measurement?
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     item_price:{
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     item_count_par:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     current_item_count:{
         type: Sequelize.STRING,
@@ -183,10 +183,6 @@ const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
         type: Sequelize.INTEGER,
         allowNull: true
     },
-    // inventory_items_id: {                       // foreign key situation?
-    //     type: Sequelize.INTEGER,
-    //     allowNull: true
-    // },
     },{
         freezeTableName: true,        // keeps from becoming pluralized 
         timestamps: false,            // CAN REMOVE once not using seed data

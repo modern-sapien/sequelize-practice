@@ -40,3 +40,8 @@ WHERE inventory_items.user_id = 1;
 SELECT * FROM inventory_items
 INNER JOIN weekly_inventory_table ON inventory_items.user_id = weekly_inventory_table.user_id; 
 
+-- This is how we will insert information from the base inventory sheet into the WEEKLY INVENTORY COLUMN leaving count columns empty
+INSERT INTO weekly_inventory_table (unit_name, unit_category, unit_price, unit_distributor, unit_count_par,  item_count_par, item_count_type, item_price, item_in_use_count, user_id)
+SELECT unit_name, unit_category, unit_price, unit_distributor, unit_count_par, item_count_par, item_count_type, item_price, item_in_use_count, user_id
+FROM inventory_items
+WHERE inventory_items.user_id = 1;
