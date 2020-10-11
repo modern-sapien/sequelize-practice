@@ -109,7 +109,7 @@ module.exports = function(app) {
     })
   });
 
-  app.put("/api/inventory_items/", function(req, res) {
+  app.put("/api/inventory_items/:id", function(req, res) {
     cogsModel.Inventory_items.update({
       unit_name: req.body.unit_name,
       unit_category: req.body.unit_category,
@@ -124,7 +124,34 @@ module.exports = function(app) {
       user_id: req.body.user_id,
     },  {
       where: {
-        id: req.body.id
+        id: req.params.id
+      }
+    }).then(function(result) {
+      res.json(result)
+    })
+  });
+
+  app.put("/api/weekly_inventory_table/:id", function(req, res) {
+    cogsModel.Weekly_inventory_table.update({
+      unit_name: req.body.unit_name,
+      unit_category: req.body.unit_category,
+      unit_price: req.body.unit_price,
+      unit_distributor: req.body.unit_distributor,
+      unit_count: req.body.unit_count,
+      unit_count_par: req.body.unit_count_par,
+      item_count: req.body.item_count,
+      item_count_type: req.body.item_count_type,
+      item_price: req.body.item_price,
+      item_count_par: req.body.item_count_par,
+      current_item_count: req.body.current_item_count,
+      item_in_use_count: req.body.item_in_use_count,
+      inventory_total_value: req.body.inventory_total_value,
+      projected_order_cost: req.body.projected_order_cost,
+      inventory_date: req.body.inventory_date,
+      user_id: req.body.user_id,
+    },  {
+      where: {
+        id: req.params.id
       }
     }).then(function(result) {
       res.json(result)
