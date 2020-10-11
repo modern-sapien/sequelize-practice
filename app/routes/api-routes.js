@@ -158,27 +158,44 @@ module.exports = function(app) {
     })
   });
 
-  // app.put("/api/inventory_items/", function(req, res) {
-  //   cogsModel.Inventory_items.update({
-  //     unit_name: req.body.unit_name,
-  //     unit_category: req.body.unit_category,
-  //     unit_price: req.body.unit_price,
-  //     unit_distributor: req.body.unit_distributor,
-  //     unit_count: req.body.unit_count,
-  //     unit_count_par: req.body.unit_count_par,
-  //     item_count: req.body.item_count,
-  //     item_count_par: req.body.item_count_par,
-  //     item_count_type: req.body.item_count_type,
-  //     item_price: req.body.item_price,
-  //     user_id: req.body.user_id,
-  //   },  {
-  //     where: {
-  //       id: req.body.id
-  //     }
-  //   }).then(function(result) {
-  //     res.json(result)
-  //   })
-  // });
+  // DELETE ROUTES
+
+  // Delete user from USER Table based on User ID
+  app.delete("api/users/:id", (req, res)=>{
+    cogsModel.User.Destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(result){
+      res.json(result)
+    })
+  });
+
+  // DELETE ROW FROM INVENTORY BASED ON ID
+  app.delete("api/inventory_items/:id", (req, res)=>{
+    cogsModel.Inventory_items.Destroy({
+      where:{
+        id: req.params.id
+      }
+    }).then(function(result){
+      res.json(result)
+    })
+  })
+
+  // Delete Row From Weekly based on ID
+
+  app.delete("api/inventory_items/:id", (req, res)=>{
+    cogsModel.Weekly_inventory_table.Destroy({
+      where:{
+        id: req.params.id
+      }
+    }).then(function(result){
+      res.json(result)
+    })
+  })
+
+
+
 
 }
 //   // Add sequelize code to delete a book
