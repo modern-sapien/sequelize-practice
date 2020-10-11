@@ -109,6 +109,23 @@ module.exports = function(app) {
     })
   });
 
+  app.put("/api/inventory_items/", function(req, res) {
+    cogsModel.User.update({
+      unit_name: req.body.unit_name,
+      unit_category: req.body.unit_category,
+      unit_price: req.body.unit_price,
+      unit_distributor: req.body.unit_distributor,
+      unit_count: req.body.unit_count,
+      
+    },  {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(result) {
+      res.json(result)
+    })
+  });
+
 }
 //   // Add sequelize code to delete a book
 //   app.delete("/api/book/:id", function(req, res) {
