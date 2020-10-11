@@ -69,15 +69,46 @@ module.exports = function(app) {
     })
   });
 
-    // Add New User Post
+    //  POST ROUTES
+    //  ======================
+    // Add New User Post Route
     app.post("/api/users", function(req, res) {
       cogsModel.User.create(req.body).then((result) =>  {
         res.json(result)
       })
     });
 
+    // Add New Inventory Item Post Route
+    app.post("/api/inventory_items", function(req, res) {
+    cogsModel.Inventory_items.create(req.body).then((result) =>  {
+      res.json(result)
+    })
+  });
+
+  // Add New Weekly Inventory Table Route
+  app.post("/api/weekly_inventory_table", function(req, res) {
+    cogsModel.Weekly_inventory_table.create(req.body).then((result) =>  {
+      res.json(result)
+    })
+  });
+
+  // UPDATE ROUTES
+  //  =================
+  // Update User Route
+  app.put("/api/users/:id", function(req, res) {
+    cogsModel.User.update(req.body).then((result) =>  {
+      res.json(result)
+    })
+  });
+
+}
+
+cogsModel.Weekly_inventory_table.findAll({
+  where: {
+    id: req.params.id,
+  },
+})
+
 //   // Add sequelize code to delete a book
 //   app.delete("/api/book/:id", function(req, res) {
-
 //   });
-}
