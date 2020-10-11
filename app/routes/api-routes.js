@@ -110,13 +110,18 @@ module.exports = function(app) {
   });
 
   app.put("/api/inventory_items/", function(req, res) {
-    cogsModel.User.update({
+    cogsModel.Inventory_items.update({
       unit_name: req.body.unit_name,
       unit_category: req.body.unit_category,
       unit_price: req.body.unit_price,
       unit_distributor: req.body.unit_distributor,
       unit_count: req.body.unit_count,
-      
+      unit_count_par: req.body.unit_count_par,
+      item_count: req.body.item_count,
+      item_count_par: req.body.item_count_par,
+      item_count_type: req.body.item_count_type,
+      item_price: req.body.item_price,
+      user_id: req.body.user_id,
     },  {
       where: {
         id: req.body.id
@@ -125,6 +130,28 @@ module.exports = function(app) {
       res.json(result)
     })
   });
+
+  // app.put("/api/inventory_items/", function(req, res) {
+  //   cogsModel.Inventory_items.update({
+  //     unit_name: req.body.unit_name,
+  //     unit_category: req.body.unit_category,
+  //     unit_price: req.body.unit_price,
+  //     unit_distributor: req.body.unit_distributor,
+  //     unit_count: req.body.unit_count,
+  //     unit_count_par: req.body.unit_count_par,
+  //     item_count: req.body.item_count,
+  //     item_count_par: req.body.item_count_par,
+  //     item_count_type: req.body.item_count_type,
+  //     item_price: req.body.item_price,
+  //     user_id: req.body.user_id,
+  //   },  {
+  //     where: {
+  //       id: req.body.id
+  //     }
+  //   }).then(function(result) {
+  //     res.json(result)
+  //   })
+  // });
 
 }
 //   // Add sequelize code to delete a book
