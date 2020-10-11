@@ -161,8 +161,8 @@ module.exports = function(app) {
   // DELETE ROUTES
 
   // Delete user from USER Table based on User ID
-  app.delete("api/users/:id", (req, res)=>{
-    cogsModel.User.Destroy({
+  app.delete("/api/users/:id", (req, res)=>{
+    cogsModel.User.destroy({
       where: {
         id: req.params.id
       }
@@ -172,8 +172,8 @@ module.exports = function(app) {
   });
 
   // DELETE ROW FROM INVENTORY BASED ON ID
-  app.delete("api/inventory_items/:id", (req, res)=>{
-    cogsModel.Inventory_items.Destroy({
+  app.delete("/api/inventory_items/:id", (req, res)=>{
+    cogsModel.Inventory_items.destroy({
       where:{
         id: req.params.id
       }
@@ -184,8 +184,8 @@ module.exports = function(app) {
 
   // Delete Row From Weekly based on ID
 
-  app.delete("api/inventory_items/:id", (req, res)=>{
-    cogsModel.Weekly_inventory_table.Destroy({
+  app.delete("/api/weekly_inventory_table/:id", (req, res)=>{
+    cogsModel.Weekly_inventory_table.destroy({
       where:{
         id: req.params.id
       }
