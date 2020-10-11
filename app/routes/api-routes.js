@@ -69,8 +69,8 @@ module.exports = function(app) {
     })
   });
 
-    //  POST ROUTES
-    //  ======================
+//  POST ROUTES
+//  ======================
     // Add New User Post Route
     app.post("/api/users", function(req, res) {
       cogsModel.User.create(req.body).then((result) =>  {
@@ -95,20 +95,21 @@ module.exports = function(app) {
   // UPDATE ROUTES
   //  =================
   // Update User Route
-  app.put("/api/users/:id", function(req, res) {
-    cogsModel.User.update(req.body).then((result) =>  {
+  app.put("/api/users/", function(req, res) {
+    cogsModel.User.update({
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email
+    },  {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(result) {
       res.json(result)
     })
   });
 
 }
-
-cogsModel.Weekly_inventory_table.findAll({
-  where: {
-    id: req.params.id,
-  },
-})
-
 //   // Add sequelize code to delete a book
 //   app.delete("/api/book/:id", function(req, res) {
 //   });
