@@ -28,7 +28,6 @@ const routes = require("./controllers/cogsController.js");
 app.use(routes);
 
 require("./routes/api-routes.js")(app);
-require("./routes/html-routes.js")(app);
 
 // Starts the server to begin listening
 // =============================================================
