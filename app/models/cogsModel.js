@@ -92,7 +92,7 @@ const Inventory_items = sequelize.define("inventory_item",  {
         allowNull: false
     },
     item_count_par:{
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     user_id: {
@@ -144,11 +144,11 @@ const Weekly_inventory_table = sequelize.define("weekly_inventory_table",  {
         allowNull: true
     },
     item_count_par:{
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: true
     },
     current_item_count:{
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: true
     }, 
     item_in_use_count:{
