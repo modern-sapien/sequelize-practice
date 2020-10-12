@@ -23,9 +23,9 @@ app.set("view engine", "handlebars")
 
 // ROUTES
 // ==================================
-require("./routes/user-api-routes");
-require("./routes/inventory-item-api-routes");
-require("./routes/weekly-inventory-api-routes");
+require("./routes/user-api-routes.js");
+require("./routes/inventory-item-api-routes.js");
+require("./routes/weekly-inventory-api-routes.js");
 
 
 
