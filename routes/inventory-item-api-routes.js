@@ -4,13 +4,13 @@ module.exports = function (app){
 
     // GET ROUTES
     app.get("/api/inventory_items", function(req, res) {
-        db.inventory_items.findAll({}).then((result) =>  {
+        db.Inventory_item.findAll({}).then((result) =>  {
           res.json(result)
       });
       })
       // specific inventory_items API routes
     app.get("/api/inventory_items/:id", function(req, res) {
-      db.Inventory_items.findAll({
+      db.Inventory_item.findAll({
         where: {
           id: req.params.id,
         },
@@ -20,14 +20,14 @@ module.exports = function (app){
     });
     // POST ROUTE
     app.post("/api/inventory_items", function(req, res) {
-      db.Inventory_items.create(req.body).then((result) =>  {
+      db.Inventory_item.create(req.body).then((result) =>  {
         res.json(result)
       })
     });
 
     // Update / PUT Route
     app.put("/api/inventory_items/:id", function(req, res) {
-      db.Inventory_items.update({
+      db.Inventory_item.update({
         unit_name: req.body.unit_name,
         unit_category: req.body.unit_category,
         unit_price: req.body.unit_price,
@@ -50,7 +50,7 @@ module.exports = function (app){
 
     // Delete Route
     app.delete("/api/inventory_items/:id", function(req, res) {
-      db.Inventory_items.destroy({
+      db.Inventory_item.destroy({
         where: {
           id: req.params.id
         }

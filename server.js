@@ -30,7 +30,7 @@ require("./routes/weekly-inventory-api-routes.js");
 
 
 db.sequelize.sync({force:true}).then(function() {
-  app.removeListener(PORT, function(){
+  app.listen(PORT, function(){
     console.log("App listening on PORT:" + PORT)
   });
 });
