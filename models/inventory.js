@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-    const Inventory_item = sequelize.define("Inventory_item",  {
+    var Inventory_item = sequelize.define("Inventory_item",  {
         unit_name:{
             type: DataTypes.STRING,
             allowNull: false
@@ -45,15 +45,8 @@ module.exports = function(sequelize, DataTypes){
             allowNull: true},
         // INVENTORY TABLE id should be auto-incrementing, but only used as a reference, should not necessarily be more than one reference table for MVP
     },{
-        freezeTableName: false,        // IS PLURALIZED
+        // freezeTableName: false,        // IS PLURALIZED
         timestamps: false,            // CAN REMOVE once not using seed data
     });
-
-    Inventory_item.associate = function(models) {
-        Inventory_item.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        })
-    };
-}
+    return Inventory_item;
+};

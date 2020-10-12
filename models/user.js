@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-    const User = sequelize.define("User",  {
+    var User = sequelize.define("User",  {
         username: {
             type: DataTypes.STRING,
             allowNull: false},
@@ -13,15 +13,8 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.INTEGER,
             allowNull: true},
         },{
-            freezeTableName: true,        // keeps from becoming pluralized 
+            // freezeTableName: true,        // keeps from becoming pluralized 
             timestamps: false,            // CAN REMOVE once not using seed data
         });
-
-    User.associate = function(models){
-        // Associates User with inventory items 
-        // When user is deleted, delete any associated inventory items
-        User.hasMany(models.inventoryItem, {
-            onDelete: "cascade"
-        });
-    }
+    return User;
 }

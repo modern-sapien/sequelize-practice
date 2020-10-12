@@ -1,3 +1,5 @@
+const db = require ("../models")
+
 module.exports = function (app){
     app.get("/api/inventory_items", function(req, res) {
         db.Inventory_items.findAll({}).then((result) =>  {

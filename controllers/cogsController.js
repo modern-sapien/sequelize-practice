@@ -1,17 +1,14 @@
-const express = require("express");
+// const express = require("express");
 
-const router = express.Router();
+// const router = express.Router();
 
-const cogsModel = require("../models/cogsModel.js");
+// const cogsModel = require("../models");
 
-router.get("/", function(req, res) {
-    cogsModel.User.findAll(req.body) {
-        cogsModel.User.create(req.body).then((result) =>  {
-            res.json(result)
-          })
-        }
-    });
-    
+// router.get("/", function(req, res) {
+//   res.render('index', {
+//     title: "About me"})
+//   })
 
-  module.exports = router;
 
+
+//   module.exports = router;
