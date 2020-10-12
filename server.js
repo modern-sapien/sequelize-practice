@@ -67,6 +67,8 @@ app.set("view engine", "handlebars")
 // ==================================
 require("./routes/user-api-routes");
 require("./routes/inventory-item-api-routes");
+require("./routes/weekly-inventory-api-routes");
+
 
 
 db.sequelize.sync().then(function() {
