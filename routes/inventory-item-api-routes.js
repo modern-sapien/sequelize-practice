@@ -4,7 +4,7 @@ module.exports = function (app){
 
     // GET ROUTES
     app.get("/api/inventory_items", function(req, res) {
-        db.Inventory_items.findAll({}).then((result) =>  {
+        db.inventory_items.findAll({}).then((result) =>  {
           res.json(result)
       });
       })
